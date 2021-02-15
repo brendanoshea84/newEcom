@@ -20,6 +20,7 @@ from django.conf.urls import include
 
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 
 # from products.views import (
 #     ProductListView,
@@ -36,13 +37,15 @@ from .views import register_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page),
-    path('about/', about_page),
-    path('contact/', contact_page),
-    path('login/', login_page),
-    path('register/', register_page),
+    path('', home_page, name='home'),
+    path('about/', about_page, name="about"),
+    path('contact/', contact_page, name="contact"),
+    path('login/', login_page, name="login"),
+    path('register/', register_page, name="register"),
+    path('bootstrap/', TemplateView.as_view(template_name="bootstrap/example.html")),
 
     path('products/', include(('products.urls', 'products'), namespace='products')),
+    path('search/', include(('search.urls', 'search'), namespace='search')),
     # path('products/', ProductListView.as_view()),
     # path('products-fbv/', product_list_view),
 
