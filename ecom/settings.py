@@ -42,7 +42,15 @@ INSTALLED_APPS = [
     # Our apps
     'products',
     'search',
+    'tags',
+    'carts',
+    'orders',
+    'accounts',
+    'billing',
+    'addresses'
 ]
+
+# AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGOUT_REDIRECT_URL = '/login/'
 ROOT_URLCONF = 'ecom.urls'
 
 TEMPLATES = [

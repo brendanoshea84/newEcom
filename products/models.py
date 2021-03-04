@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Q
 import random
 import os
-from .utils import unique_slug_generator
+from ecom.utils import unique_slug_generator
 from django.db.models.signals import pre_save
 from django.urls import reverse
 
@@ -32,9 +32,10 @@ class ProductQuerySet(models.query.QuerySet):
         return self.filter(featured=True, active=True)
 
     def search(self, query):
-        lookups =   (Q(title__icontains=query)|
-                    Q(description__icontains=query)|
-                    Q(price__icontains=query))
+        lookups =   (Q(title__icontains=query)
+                    |Q(description__icontains=query)
+                    |Q(price__icontains=query)
+                    |Q(tag__title__icontains=query))
         return self.filter(lookups).distinct()
 
 
@@ -78,6 +79,10 @@ class Product(models.Model):
         return self.title
 
     def __unicode__(self):
+        return self.title
+    
+    @property
+    def name(self):
         return self.title
 
 

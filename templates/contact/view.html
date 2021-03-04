@@ -7,10 +7,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <p>{{ content }}</p>
-            <div class="col-sm-6 col-12">
-                <form method="POST">
+            
+            <div class="col-md-6 col-12 mx-auto">
+                <p>{{ content }}</p>
+                <form method="POST" class="contact-form" action="{% url 'contact' %}">
                     {% csrf_token %} {{ form }}
+                    <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 <br>
